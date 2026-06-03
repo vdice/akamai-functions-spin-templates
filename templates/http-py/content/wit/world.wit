@@ -1,0 +1,23 @@
+package akamai:functions@1.0.0;
+
+// The full world of a guest targeting an http-trigger
+world http-trigger {
+  include platform;
+  export wasi:http/incoming-handler@0.2.0;
+}
+
+// The imports needed for a guest to run on a Akamai Functions
+world platform {
+  include wasi:cli/imports@0.2.0;
+  import wasi:http/outgoing-handler@0.2.0;
+  import fermyon:spin/redis@2.0.0;
+  import fermyon:spin/mqtt@2.0.0;
+  import fermyon:spin/postgres@2.0.0;
+  import fermyon:spin/mysql@2.0.0;
+  import fermyon:spin/key-value@2.0.0;
+  import fermyon:spin/variables@2.0.0;
+  include wasi:keyvalue/imports@0.2.0-draft2;
+  import spin:postgres/postgres@3.0.0;
+  import spin:postgres/postgres@4.0.0;
+  import wasi:config/store@0.2.0-draft-2024-09-27;
+}
